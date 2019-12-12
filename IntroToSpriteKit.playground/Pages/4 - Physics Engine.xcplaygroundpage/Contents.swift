@@ -102,7 +102,7 @@ for node in scene.children {
 }
 
 //// Configure the view so that physics body edges are visible
-//view.showsPhysics = true
+view.showsPhysics = true
 
 /*:
  ### Other types of physics bodies
@@ -164,7 +164,7 @@ scene.childNode(withName: "one of the crates")?.physicsBody?.mass
 boulder.physicsBody?.mass
 
 // Change the boulder's mass
-boulder.physicsBody?.mass = 0.20
+boulder.physicsBody?.mass = 0.2
 
 /*:
  ### Changing the Direction of Gravity
@@ -182,9 +182,9 @@ boulder.physicsBody?.mass = 0.20
  
  */
 // What is the current direction of gravity in the scene?
-scene.physicsWorld.gravity
+//scene.physicsWorld.gravity
 
-// Make gravity pull toward the left side of the scene
+//Make gravity pull toward the left side of the scene
 //scene.physicsWorld.gravity = CGVector(dx: -9.8, dy: 0)
 
 /*:
@@ -204,11 +204,28 @@ scene.physicsWorld.gravity
  */
 
 // Exercise 1: Write your code below.
-
+boulder.physicsBody?.restitution = 0.6
 // Exercise 2: Write your code below.
+for node in scene.children {
+
+    // Only look at nodes of type SKSpriteNode
+    if let thisNode = node as? SKSpriteNode {
+
+        // Only the crates
+        if thisNode.name == "one of the crates" {
+
+            // Add a physics body
+           thisNode.physicsBody = crate.physicsBody?.restitution = 0.6
+        }
+
+    }
+
+}
 
 // Exercise 3: Write your code below.
-
+hill.physicsBody = SKPhysicsBody(texture: hill.texture!,
+alphaThreshold: 0.7,
+size: hill.size)
 // Exercise 4: Write your code below.
 
 
