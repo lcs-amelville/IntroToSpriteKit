@@ -86,7 +86,7 @@ scene.addChild(circle4)
  */
 
 // Define an action that causes a node to wait (do nothing)
-let actionFiveSecondWait = SKAction.wait(forDuration: 5.0)
+let actionFiveSecondWait = SKAction.wait(forDuration: 1.0)
 
 // Define a vector that describes an upward movement
 let upThisMuch = CGVector(dx: 0, dy: 250)
@@ -177,16 +177,19 @@ let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
 
 // Exercise 1: Write your code below.
 
-let waitReallyLongMoveRight = SKAction.sequence
 
-//let waitReallyLong = SKAction.squence([actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait])
-//let moveRight = SKAction sequence(actions:)
+//let moveRight = SKAction.moveBy(x: 100, y: 0, duration: 2)
+//let waitReallyLong = SKAction.sequence([actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait])
 //
+//let waitReallyLongMoveRight = SKAction.sequence([waitReallyLong, moveRight])
 //
 //circle1.run(waitReallyLongMoveRight)
 // Exercise 2: Write your code below.
+let waitReallyLong = SKAction.sequence([actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait])
+let moveLeft = SKAction.moveBy(x: -200, y: 0, duration: 2)
 
-
+let waitMoveLeft = SKAction.sequence([waitReallyLong, moveLeft, actionUpwardsMovement])
+circle2.run(waitMoveLeft)
 // Exercise 3: Write your code below.
 
 
