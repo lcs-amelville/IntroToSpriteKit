@@ -111,28 +111,28 @@ let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
 
 //// 1. Make the first circle move up immediately (runs a single action, once)
 //circle1.run(actionUpwardsMovement)
-
+//
 //// Define a sequence that involves a:
 //// * five second wait
 //// * moving upward
 //let actionShortWaitThenMoveUp = SKAction.sequence([actionFiveSecondWait, actionUpwardsMovement])
-
+//
 //// 2. Make the second circle wait for five seconds, then move up
 //circle2.run(actionShortWaitThenMoveUp)
-
+//
 //// Define a sequence that involves a:
 //// * five second wait
 //// * another five second wait
 //// * moving upward
 //let actionLongerWaitThenMoveUp = SKAction.sequence([actionFiveSecondWait, actionFiveSecondWait, actionUpwardsMovement])
-
+//
 //// 3. Make the third circle wait for 10 seconds, then move up
 //circle3.run(actionLongerWaitThenMoveUp)
-
+//
 //// 4. Make the fourth circle move up every five seconds
 //let actionRepeatWaitThenJump = SKAction.repeatForever(actionShortWaitThenMoveUp)
 //circle4.run(actionRepeatWaitThenJump)
-
+//
 //// 5. Make the third circle wait for 15 seconds, then both fade in and out, and then both expand and contract in size
 //
 //// Grouped actions to get larger and fade out
@@ -177,7 +177,13 @@ let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
 
 // Exercise 1: Write your code below.
 
+let waitReallyLongMoveRight = SKAction.sequence
 
+//let waitReallyLong = SKAction.squence([actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait])
+//let moveRight = SKAction sequence(actions:)
+//
+//
+//circle1.run(waitReallyLongMoveRight)
 // Exercise 2: Write your code below.
 
 

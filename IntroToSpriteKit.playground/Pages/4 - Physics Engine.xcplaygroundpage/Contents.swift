@@ -203,32 +203,30 @@ boulder.physicsBody?.mass = 0.2
  
  */
 
-// Exercise 1: Write your code below.
-boulder.physicsBody?.restitution = 0.6
-// Exercise 2: Write your code below.
-for node in scene.children {
-
-    // Only look at nodes of type SKSpriteNode
-    if let thisNode = node as? SKSpriteNode {
-
-        // Only the crates
-        if thisNode.name == "one of the crates" {
-
-            // Add a physics body
-           thisNode.physicsBody = crate.physicsBody?.restitution = 0.6
-        }
-
-    }
-
-}
+//// Exercise 1: Write your code below.
+//boulder.physicsBody?.restitution = 0.6
+//// Exercise 2: Write your code below.
+//for node in scene.children {
+//
+//    // Only look at nodes of type SKSpriteNode
+//    if let thisNode = node as? SKSpriteNode {
+//
+//        // Only the crates
+//        if thisNode.name == "one of the crates" {
+//
+//            // Add a physics body
+//            thisNode.physicBody?.restitution = 0.5
+//        }
+//
+//    }
+//
+//}
 
 // Exercise 3: Write your code below.
-hill.physicsBody = SKPhysicsBody(texture: hill.texture!,
-alphaThreshold: 0.7,
-size: hill.size)
+//hill.physicsBody?.friction = 1
 // Exercise 4: Write your code below.
 
-
+//scene.physicsWorld.gravity = CGVector(dx: 0, dy: 10)
 /*:
 
  [Previous: Positioning Sprites](@previous) | Page 4 | [Next: Applying Actions to Nodes](@next)
