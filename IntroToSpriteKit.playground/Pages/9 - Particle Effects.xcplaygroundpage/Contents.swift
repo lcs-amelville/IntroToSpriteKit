@@ -189,9 +189,3 @@ if let snowstorm = SKEmitterNode(fileNamed: "Snow") {
     
 }
 
-
-/*:
-
- [Previous: Animating a Sprite](@previous) | Page 9 | [Next: Music and Sound Effects](@next)
- 
- */
