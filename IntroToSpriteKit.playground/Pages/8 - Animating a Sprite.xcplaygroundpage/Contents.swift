@@ -32,7 +32,7 @@ hero.position = CGPoint(x: hero.size.width / 2, y: hero.size.height / 2)
 hero.physicsBody = SKPhysicsBody(texture: hero.texture!,
                                  alphaThreshold: 0.5,
                                  size: hero.size)
-scene.addChild(hero)
+//scene.addChild(hero)
 
 /*:
 ### Arrays
@@ -83,12 +83,12 @@ An [array](https://docs.swift.org/swift-book/LanguageGuide/CollectionTypes.html#
  ![show-result](show-result.png)
  
 */
-//// Create an empty array of SKTexture objects
-//var walkingTextures: [SKTexture] = []
-//
-//// Now add the two images we need in the array
-//walkingTextures.append(SKTexture(imageNamed: "hero-walk-right-0"))
-//walkingTextures.append(SKTexture(imageNamed: "hero-walk-right-1"))
+// Create an empty array of SKTexture objects
+var walkingTextures: [SKTexture] = []
+
+// Now add the two images we need in the array
+walkingTextures.append(SKTexture(imageNamed: "hero-walk-right-0"))
+walkingTextures.append(SKTexture(imageNamed: "hero-walk-right-1"))
 
 
 /*:
@@ -147,7 +147,32 @@ An [array](https://docs.swift.org/swift-book/LanguageGuide/CollectionTypes.html#
  */
 
 // Exercise: Write your code below
+let rocket = SKSpriteNode(imageNamed: "rocket")
+rocket.position = CGPoint(x: 200, y: 40)
+rocket.physicsBody = SKPhysicsBody(texture: rocket.texture!,
+                                 alphaThreshold: 0.5,
+                                 size: rocket.size)
+rocket.physicsBody?.affectedByGravity = false
+scene.addChild(rocket)
 
+var rocketTextures: [SKTexture] = []
+
+rocketTextures.append(SKTexture(imageNamed: "rocket_0"))
+rocketTextures.append(SKTexture(imageNamed: "rocket_1"))
+rocketTextures.append(SKTexture(imageNamed: "rocket_2"))
+rocketTextures.append(SKTexture(imageNamed: "rocket_3"))
+rocketTextures.append(SKTexture(imageNamed: "rocket_4"))
+rocketTextures.append(SKTexture(imageNamed: "rocket_5"))
+
+let rocketFlyingAnimation = SKAction.animate(with: rocketTextures, timePerFrame: 0.2, resize: true, restore: true)
+
+let actionMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
+
+let actionMoveUpfive = SKAction.repeat(actionMoveUp, count: 6)
+
+let actionFlyUp = SKAction.group([rocketFlyingAnimation, actionMoveUpfive])
+
+rocket.run(actionFlyUp)
 /*:
  
  [Previous: Working With Text](@previous) | Page 8 | [Next: Particle Effects](@next)
