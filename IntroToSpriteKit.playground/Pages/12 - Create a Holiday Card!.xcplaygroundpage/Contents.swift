@@ -31,6 +31,56 @@ view.presentScene(scene)
 // Show the view in the live view area
 PlaygroundSupport.PlaygroundPage.current.liveView = view
 
+//Making background and giving it no physics body
+
+let background = SKSpriteNode(imageNamed: "BG")
+background.position = CGPoint(x: 200, y: 150)
+
+background.physicsBody?.affectedByGravity = false
+
+scene.addChild(background)
+
+// Adding all the tiles I want
+
+//Tile 1
+let tile1 = SKSpriteNode(imageNamed: "1")
+tile1.position = CGPoint(x:42, y: 30)
+tile1.physicsBody = SKPhysicsBody(texture: tile1.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile1.size)
+tile1.physicsBody?.affectedByGravity = false
+tile1.physicsBody?.mass = 100000
+scene.addChild(tile1)
+
+// Tile 2
+let tile2 = SKSpriteNode(imageNamed: "2")
+tile2.position = CGPoint(x:75, y: 30)
+tile2.physicsBody = SKPhysicsBody(texture: tile2.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile2.size)
+tile2.physicsBody?.affectedByGravity = false
+tile2.physicsBody?.mass = 100000
+scene.addChild(tile2)
+
+// Tile 3
+let tile3 = SKSpriteNode(imageNamed: "3")
+tile3.position = CGPoint(x:103, y: 30)
+tile3.physicsBody = SKPhysicsBody(texture: tile3.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile3.size)
+tile3.physicsBody?.affectedByGravity = false
+tile3.physicsBody?.mass = 100000
+scene.addChild(tile3)
+
+//SnowMan
+let snowman = SKSpriteNode(imageNamed: "SnowMan_01")
+snowman.position = CGPoint(x:70, y: 200)
+snowman.physicsBody = SKPhysicsBody(texture: snowman.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: snowman.size)
+
+scene.addChild(snowman)
+
 /*:
 ### Useful Resources
 
