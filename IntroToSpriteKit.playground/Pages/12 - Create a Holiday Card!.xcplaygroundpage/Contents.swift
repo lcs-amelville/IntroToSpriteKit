@@ -31,6 +31,8 @@ view.presentScene(scene)
 // Show the view in the live view area
 PlaygroundSupport.PlaygroundPage.current.liveView = view
 
+//Start of my code
+
 //Making background and giving it no physics body
 
 let background = SKSpriteNode(imageNamed: "BG")
@@ -42,6 +44,7 @@ scene.addChild(background)
 
 // Adding all the tiles I want
 
+//Adding the starting platform.
 //Tile 1
 let tile1 = SKSpriteNode(imageNamed: "1")
 tile1.position = CGPoint(x:42, y: 30)
@@ -72,14 +75,119 @@ tile3.physicsBody?.affectedByGravity = false
 tile3.physicsBody?.mass = 100000
 scene.addChild(tile3)
 
-//SnowMan
+
+//Adding the end peices on the main platform
+//Tile 11
+let tile11 = SKSpriteNode(imageNamed: "1")
+tile11.position = CGPoint(x:190, y: 70)
+tile11.physicsBody = SKPhysicsBody(texture: tile11.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile11.size)
+tile11.physicsBody?.affectedByGravity = false
+tile11.physicsBody?.mass = 100000
+scene.addChild(tile11)
+
+// Tile 33
+let tile33 = SKSpriteNode(imageNamed: "3")
+tile33.position = CGPoint(x:340, y: 70)
+tile33.physicsBody = SKPhysicsBody(texture: tile33.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile33.size)
+tile33.physicsBody?.affectedByGravity = false
+tile33.physicsBody?.mass = 100000
+scene.addChild(tile33)
+
+
+//Adding the Middle tiles in the main platform
+//Tile22
+
+let tile22 = SKSpriteNode(imageNamed: "2")
+tile22.position = CGPoint(x:220, y: 70)
+tile22.physicsBody = SKPhysicsBody(texture: tile22.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile22.size)
+tile22.physicsBody?.affectedByGravity = false
+tile22.physicsBody?.mass = 100000
+scene.addChild(tile22)
+
+//Tile222
+let tile222 = SKSpriteNode(imageNamed: "2")
+tile222.position = CGPoint(x:250, y: 70)
+tile222.physicsBody = SKPhysicsBody(texture: tile222.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile222.size)
+tile222.physicsBody?.affectedByGravity = false
+tile222.physicsBody?.mass = 100000
+scene.addChild(tile222)
+
+let tile223 = SKSpriteNode(imageNamed: "2")
+tile223.position = CGPoint(x:280, y: 70)
+tile223.physicsBody = SKPhysicsBody(texture: tile223.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile223.size)
+tile223.physicsBody?.affectedByGravity = false
+tile223.physicsBody?.mass = 100000
+scene.addChild(tile223)
+
+let tile224 = SKSpriteNode(imageNamed: "2")
+tile224.position = CGPoint(x:310, y: 70)
+tile224.physicsBody = SKPhysicsBody(texture: tile224.texture!,
+                                  alphaThreshold: 0.1,
+                                 size: tile224.size)
+tile224.physicsBody?.affectedByGravity = false
+tile224.physicsBody?.mass = 100000
+scene.addChild(tile224)
+
+
+//Adding other sprites
+
+//Adding SnowMan
 let snowman = SKSpriteNode(imageNamed: "SnowMan_01")
-snowman.position = CGPoint(x:70, y: 200)
+snowman.position = CGPoint(x:70, y: 60)
 snowman.physicsBody = SKPhysicsBody(texture: snowman.texture!,
                                   alphaThreshold: 0.1,
                                  size: snowman.size)
-
+snowman.physicsBody?.affectedByGravity = false
 scene.addChild(snowman)
+let size = SKAction.scale(to: 0.3, duration: 0.1)
+snowman.run(size)
+
+
+//Adding the Sign
+let sign2 = SKSpriteNode(imageNamed: "Sign_2")
+sign2.position = CGPoint(x: 200, y: 100)
+
+scene.addChild(sign2)
+//Resizing the sign
+let sizeSign = SKAction.scale(to: 0.4, duration: 0.1)
+sign2.run(sizeSign)
+
+//Adding the Tree
+let tree2 = SKSpriteNode(imageNamed: "Tree_2")
+tree2.position = CGPoint(x: 340, y: 140)
+
+scene.addChild(tree2)
+//Resizing the tree
+let sizeTree = SKAction.scale(to: 0.4, duration: 0.1)
+tree2.run(sizeTree)
+
+
+//Creating Action
+
+//Creating the Jumping action
+let moveUp = SKAction.moveBy(x: 65, y: 90, duration: 1.2)
+let moveDown = SKAction.moveBy(x: 35, y: -31, duration: 0.5)
+
+//Creating the moving forward action
+let moveForward = SKAction.moveBy(x: 100, y: 0.0, duration: 2)
+let wait = SKAction.wait(forDuration: 0.2)
+
+//Adding all the actions so I can play them
+let moveUpThenDownThenWaitThenForward = SKAction.sequence([moveUp, moveDown, wait, moveForward])
+
+//Telling the actions to playz
+snowman.run(moveUpThenDownThenWaitThenForward)
+
 
 /*:
 ### Useful Resources
