@@ -172,6 +172,23 @@ let sizeTree = SKAction.scale(to: 0.4, duration: 0.1)
 tree2.run(sizeTree)
 
 
+// Making Letters
+for letters in "H" {
+
+let letter = SKLabelNode(fontNamed: "Helvetica Neue Light")
+letter.fontSize = 20
+letter.fontColor = .black
+letter.text = "Happy New Year"
+letter.position = CGPoint(x: 200, y: 200)
+let rectangle5 = CGSize(width: 20, height: 30)
+letter.physicsBody = SKPhysicsBody(rectangleOf: rectangle5)
+letter.physicsBody?.affectedByGravity = false
+// Add the letter to the scene
+scene.addChild(letter)
+
+}
+
+
 //Creating Action
 
 //Creating the Jumping action
