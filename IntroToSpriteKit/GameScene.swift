@@ -102,6 +102,25 @@ class GameScene: SKScene {
      }
     
     override func keyDown(with event: NSEvent) {
+        
+         let fire = SKSpriteNode(imageNamed: "fire1")
+        var fireTextures: [SKTexture] = []
+        
+        fireTextures.append(SKTexture(imageNamed: "fire1"))
+        fireTextures.append(SKTexture(imageNamed: "fire2"))
+        fireTextures.append(SKTexture(imageNamed: "fire3"))
+        fireTextures.append(SKTexture(imageNamed: "fire4"))
+        fireTextures.append(SKTexture(imageNamed: "fire5"))
+        fireTextures.append(SKTexture(imageNamed: "fire6"))
+        fireTextures.append(SKTexture(imageNamed: "fire7"))
+        
+        
+        let fireFlyingAnimation = SKAction.animate(with: fireTextures, timePerFrame: 0.2, resize: true, restore: true)
+        
+        let actionShoot = SKAction.moveBy(x: 500, y: 0, duration: 2)
+        
+        let fireShoot = SKAction.group ([actionShoot, fireFlyingAnimation])
+        
       //ignore repeted key presses.
        guard !event.isARepeat else { return }
         
