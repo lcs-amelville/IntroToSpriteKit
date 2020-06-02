@@ -105,9 +105,11 @@ class GameScene: SKScene {
         
         let actionShoot = SKAction.moveBy(x: 500, y: 0, duration: 2)
         
-        let actionReturn = SKAction.moveBy(x: -500, y: 0, duration: 0.001)
+        let actionReturn = SKAction.moveBy(x: -500, y: 0, duration: 0)
         
-        let fireShootReturn = SKAction.group ([actionShoot, fireFlyingAnimation, actionReturn])
+        let fireShoot = SKAction.group ([actionShoot, fireFlyingAnimation])
+        
+        let fireShootReturn = SKAction.sequence([fireShoot, actionReturn])
         
       //ignore repeted key presses.
        guard !event.isARepeat else { return }
@@ -121,15 +123,22 @@ class GameScene: SKScene {
         switch keyCode {
         case 125:
             print("Down Arrow Key pressed")
+            let moveDown = SKAction.moveBy(x: 0, y: -50, duration: 1)
+            player.run(moveDown)
+            fire.run(moveDown)
         case 124:
              print("Right Arrow Key pressed")
-            
+
         case 123:
              print("left Arrow Key pressed")
         case 126:
              print("up Arrow Key pressed")
+              let moveUp = SKAction.moveBy(x: 0, y: 50, duration: 1)
+             player.run(moveUp)
+             fire.run(moveUp)
         case 49:
             fire.run(fireShootReturn)
+            
         default:
             break
         }
