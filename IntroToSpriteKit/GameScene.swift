@@ -20,7 +20,8 @@ class GameScene: SKScene {
    
     //Setting the player image
     let player = SKSpriteNode(imageNamed: "Sunfire")
-    
+    let fire = SKSpriteNode(imageNamed: "fire1")
+    let background = SKSpriteNode(imageNamed: "space")
     // This function runs once to set up the scene
     override func didMove(to view: SKView) {
       
@@ -42,7 +43,7 @@ class GameScene: SKScene {
         self.addChild(player)
         
         //Adding Background
-        let background = SKSpriteNode(imageNamed: "space")
+       
         background.position = CGPoint(x: 300, y: 280)
 
         background.physicsBody?.affectedByGravity = false
@@ -50,7 +51,7 @@ class GameScene: SKScene {
         self.addChild(background)
         
         //Adding the fire ball to the game
-        let fire = SKSpriteNode(imageNamed: "fire1")
+        
         fire.position = CGPoint(x: 250, y: 200)
         fire.physicsBody = SKPhysicsBody(texture: fire.texture!,
                                          alphaThreshold: 0.5,
@@ -58,22 +59,7 @@ class GameScene: SKScene {
         fire.physicsBody?.affectedByGravity = false
         self.addChild(fire)
 
-        var fireTextures: [SKTexture] = []
         
-        fireTextures.append(SKTexture(imageNamed: "fire1"))
-        fireTextures.append(SKTexture(imageNamed: "fire2"))
-        fireTextures.append(SKTexture(imageNamed: "fire3"))
-        fireTextures.append(SKTexture(imageNamed: "fire4"))
-        fireTextures.append(SKTexture(imageNamed: "fire5"))
-        fireTextures.append(SKTexture(imageNamed: "fire6"))
-        fireTextures.append(SKTexture(imageNamed: "fire7"))
-        
-        
-        let fireFlyingAnimation = SKAction.animate(with: fireTextures, timePerFrame: 0.2, resize: true, restore: true)
-        
-        let actionShoot = SKAction.moveBy(x: 500, y: 0, duration: 2)
-        
-        let fireShoot = SKAction.group ([actionShoot, fireFlyingAnimation])
         
 //        // Get a reference to the mp3 file in the app bundle
 //        let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
@@ -103,7 +89,7 @@ class GameScene: SKScene {
     
     override func keyDown(with event: NSEvent) {
         
-         let fire = SKSpriteNode(imageNamed: "fire1")
+        
         var fireTextures: [SKTexture] = []
         
         fireTextures.append(SKTexture(imageNamed: "fire1"))
@@ -119,7 +105,9 @@ class GameScene: SKScene {
         
         let actionShoot = SKAction.moveBy(x: 500, y: 0, duration: 2)
         
-        let fireShoot = SKAction.group ([actionShoot, fireFlyingAnimation])
+        let actionReturn = SKAction.moveBy(x: -500, y: 0, duration: 0.001)
+        
+        let fireShootReturn = SKAction.group ([actionShoot, fireFlyingAnimation, actionReturn])
         
       //ignore repeted key presses.
        guard !event.isARepeat else { return }
@@ -141,7 +129,7 @@ class GameScene: SKScene {
         case 126:
              print("up Arrow Key pressed")
         case 49:
-            fire.run(fireShoot)
+            fire.run(fireShootReturn)
         default:
             break
         }
