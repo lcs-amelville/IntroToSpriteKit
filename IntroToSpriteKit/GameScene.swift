@@ -80,8 +80,7 @@ class GameScene: SKScene {
 //        } catch {
 //            // Do nothing if the sound file could not be played
 //        }
-        //let moveLeft = SKAction.moveBy(x: -20, y: 0, duration: 0.1)
-        //let moveright = SKAction.moveBy(x: 20, y: 0, duration: 0.1)
+       
         
     }
  
@@ -127,6 +126,9 @@ class GameScene: SKScene {
         
         let moveWait = SKAction.sequence([actionMove, actionWaitShort, actionReturn, actionWait,])
         
+        let moveLeft = SKAction.moveBy(x: -50, y: 0, duration: 1)
+        let moveRight = SKAction.moveBy(x: 50, y: 0, duration: 1)
+        
       //ignore repeted key presses.
        guard !event.isARepeat else { return }
         
@@ -156,7 +158,10 @@ class GameScene: SKScene {
             fireRing.run(moveUp)
         case 49:
             fire.run(fireShootReturn)
-            
+            case 6:
+                          fireRing.run(moveLeft)
+                      case 7:
+                          fireRing.run(moveRight)
         default:
             break
         }
