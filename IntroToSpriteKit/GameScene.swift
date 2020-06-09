@@ -17,12 +17,13 @@ class GameScene: SKScene {
     
     // Background music player
     var backgroundMusic: AVAudioPlayer?
-   
+   var loopNumber = 1
     //Setting the player image
     let player = SKSpriteNode(imageNamed: "Sunfire")
     let fire = SKSpriteNode(imageNamed: "fire1")
     let background = SKSpriteNode(imageNamed: "space")
     let fireRing = SKSpriteNode(imageNamed: "fireRing")
+    let bird = SKSpriteNode(imageNamed: "Bird1")
     // This function runs once to set up the scene
     override func didMove(to view: SKView) {
       
@@ -67,6 +68,35 @@ class GameScene: SKScene {
         fireRing.physicsBody?.affectedByGravity = false
         self.addChild(fireRing)
         
+        
+        bird.position = CGPoint(x:700, y: Int.random(in: 0...500))
+        bird.zPosition = 1
+        bird.physicsBody = SKPhysicsBody(texture: bird.texture!,
+        alphaThreshold: 1,
+        size: bird.size)
+        bird.physicsBody?.affectedByGravity = false
+        let sizeBird = SKAction.scale(to: 1.55, duration: 0.1)
+        bird.run(sizeBird)
+        
+        var birdTextures: [SKTexture] = []
+              
+              birdTextures.append(SKTexture(imageNamed: "Bird1"))
+              birdTextures.append(SKTexture(imageNamed: "Bird2"))
+              birdTextures.append(SKTexture(imageNamed: "Bird3"))
+              birdTextures.append(SKTexture(imageNamed: "Bird4"))
+        
+        let birdFlyingAnimation = SKAction.animate(with: birdTextures, timePerFrame: 0.7, resize: true, restore: true)
+        
+        let birdFlying = SKAction.sequence([birdFlyingAnimation, birdFlyingAnimation])
+        
+        let flyForward = SKAction.moveBy(x: -600, y: 0, duration: 8)
+        
+        let birdFly = SKAction.group([birdFlying, flyForward])
+        
+            self.addChild(bird)
+            bird.run(birdFly)
+           
+        
 //        // Get a reference to the mp3 file in the app bundle
 //        let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
 //
@@ -83,8 +113,7 @@ class GameScene: SKScene {
        
         
     }
- 
-    
+   
    
      // This runs before each frame is rendered
      // Avoid putting computationally intense code in this function to maintain high performance
