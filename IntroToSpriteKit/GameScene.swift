@@ -13,11 +13,11 @@ import AVFoundation
 
 
 class GameScene: SKScene {
-   
+    
     
     // Background music player
     var backgroundMusic: AVAudioPlayer?
-   var loopNumber = 1
+    var loopNumber = 1
     //Setting the player image
     let player = SKSpriteNode(imageNamed: "Sunfire")
     let fire = SKSpriteNode(imageNamed: "fire1")
@@ -26,13 +26,13 @@ class GameScene: SKScene {
     let bird = SKSpriteNode(imageNamed: "Bird1")
     // This function runs once to set up the scene
     override func didMove(to view: SKView) {
-      
+        
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-       
+        
         //Addingplayer
         player.physicsBody = SKPhysicsBody(texture: player.texture!,
-        alphaThreshold: 0.5,
-        size: player.size)
+                                           alphaThreshold: 0.5,
+                                           size: player.size)
         
         player.position.x = 200
         player.position.y = 200
@@ -45,11 +45,11 @@ class GameScene: SKScene {
         self.addChild(player)
         
         //Adding Background
-       
+        
         background.position = CGPoint(x: 300, y: 280)
-
+        
         background.physicsBody?.affectedByGravity = false
-
+        
         self.addChild(background)
         
         //Adding the fire ball to the game
@@ -60,11 +60,11 @@ class GameScene: SKScene {
                                          size: fire.size)
         fire.physicsBody?.affectedByGravity = false
         self.addChild(fire)
-
+        
         fireRing.position = CGPoint(x: -100, y: 200)
         fireRing.physicsBody = SKPhysicsBody(texture: fireRing.texture!,
-        alphaThreshold: 1,
-        size: fireRing.size)
+                                             alphaThreshold: 1,
+                                             size: fireRing.size)
         fireRing.physicsBody?.affectedByGravity = false
         self.addChild(fireRing)
         
@@ -72,18 +72,18 @@ class GameScene: SKScene {
         bird.position = CGPoint(x:700, y: Int.random(in: 0...500))
         bird.zPosition = 1
         bird.physicsBody = SKPhysicsBody(texture: bird.texture!,
-        alphaThreshold: 1,
-        size: bird.size)
+                                         alphaThreshold: 1,
+                                         size: bird.size)
         bird.physicsBody?.affectedByGravity = false
         let sizeBird = SKAction.scale(to: 1.55, duration: 0.1)
         bird.run(sizeBird)
         
         var birdTextures: [SKTexture] = []
-              
-              birdTextures.append(SKTexture(imageNamed: "Bird1"))
-              birdTextures.append(SKTexture(imageNamed: "Bird2"))
-              birdTextures.append(SKTexture(imageNamed: "Bird3"))
-              birdTextures.append(SKTexture(imageNamed: "Bird4"))
+        
+        birdTextures.append(SKTexture(imageNamed: "Bird1"))
+        birdTextures.append(SKTexture(imageNamed: "Bird2"))
+        birdTextures.append(SKTexture(imageNamed: "Bird3"))
+        birdTextures.append(SKTexture(imageNamed: "Bird4"))
         
         let birdFlyingAnimation = SKAction.animate(with: birdTextures, timePerFrame: 0.7, resize: true, restore: true)
         
@@ -93,33 +93,18 @@ class GameScene: SKScene {
         
         let birdFly = SKAction.group([birdFlying, flyForward])
         
-            self.addChild(bird)
-            bird.run(birdFly)
-           
+        self.addChild(bird)
+        bird.run(birdFly)
         
-//        // Get a reference to the mp3 file in the app bundle
-//        let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
-//
-//        // Convert the file path string to a URL (Uniform Resource Locator)
-//        let backgroundMusicFileURL = URL(fileURLWithPath: backgroundMusicFilePath)
-//
-//        // Attempt to open and play the file at the given URL
-//        do {
-//            backgroundMusic = try AVAudioPlayer(contentsOf: backgroundMusicFileURL)
-//            backgroundMusic?.play()
-//        } catch {
-//            // Do nothing if the sound file could not be played
-//        }
-       
         
     }
-   
-   
-     // This runs before each frame is rendered
-     // Avoid putting computationally intense code in this function to maintain high performance
-     override func update(_ currentTime: TimeInterval) {
-         // Called before each frame is rendered
-     }
+    
+    
+    // This runs before each frame is rendered
+    // Avoid putting computationally intense code in this function to maintain high performance
+    override func update(_ currentTime: TimeInterval) {
+        // Called before each frame is rendered
+    }
     
     override func keyDown(with event: NSEvent) {
         
@@ -158,14 +143,14 @@ class GameScene: SKScene {
         let moveLeft = SKAction.moveBy(x: -50, y: 0, duration: 1)
         let moveRight = SKAction.moveBy(x: 50, y: 0, duration: 1)
         
-      //ignore repeted key presses.
-       guard !event.isARepeat else { return }
+        //ignore repeted key presses.
+        guard !event.isARepeat else { return }
         
         
         // obtain the key that's been pressed
-    let keyCode: UInt16 = event.keyCode
-       print("keyCode = \(keyCode)")
-       
+        let keyCode: UInt16 = event.keyCode
+        print("keyCode = \(keyCode)")
+        
         // respond to different keys
         switch keyCode {
         case 125:
@@ -175,29 +160,29 @@ class GameScene: SKScene {
             fire.run(moveDown)
             fireRing.run(moveDown)
         case 124:
-             print("Right Arrow Key pressed")
-             fireRing.run(moveWait)
+            print("Right Arrow Key pressed")
+            fireRing.run(moveWait)
         case 123:
-             print("left Arrow Key pressed")
+            print("left Arrow Key pressed")
         case 126:
-             print("up Arrow Key pressed")
-              let moveUp = SKAction.moveBy(x: 0, y: 50, duration: 1)
-             player.run(moveUp)
-             fire.run(moveUp)
+            print("up Arrow Key pressed")
+            let moveUp = SKAction.moveBy(x: 0, y: 50, duration: 1)
+            player.run(moveUp)
+            fire.run(moveUp)
             fireRing.run(moveUp)
         case 49:
             fire.run(fireShootReturn)
-            case 6:
-                          fireRing.run(moveLeft)
-                      case 7:
-                          fireRing.run(moveRight)
+        case 6:
+            fireRing.run(moveLeft)
+        case 7:
+            fireRing.run(moveRight)
         default:
             break
         }
         
-     
-        }
         
     }
     
+}
+
 
